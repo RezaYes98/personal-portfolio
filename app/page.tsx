@@ -9,7 +9,7 @@ export default function HomePage() {
     <div>
       <section className="mb-16">
         <p className="mb-6 leading-relaxed text-neutral-800 dark:text-neutral-200">
-          I'm a product manager and builder. I work at{' '}
+          A product manager and builder. Currently working at{' '}
           <a
             href="https://doitpay.co"
             target="_blank"
@@ -18,18 +18,17 @@ export default function HomePage() {
           >
             Doitpay
           </a>{' '}
-          building payment infrastructure. Previously, I worked at Kanggo and Ohceans.
+          building payment infrastructure.
         </p>
         <p className="mb-6 leading-relaxed text-neutral-800 dark:text-neutral-200">
-          I build products by treating constraints—regulation, scale, and operations—as
-          first-class inputs, not obstacles, and turning them into systems that are
-          reliable, compliant, and easy to operate.
+        I've worked on projects like preparing for Bank Indonesia PJP certification, 
+        building core payments, and integration. These are the foundation that lets 
+        businesses operate with confidence.
         </p>
         <p className="leading-relaxed text-neutral-800 dark:text-neutral-200">
           I've spent the last few years working on fintech infrastructure: payment
-          gateways, disbursement systems, e-wallet integrations, and regulatory
-          compliance. I care deeply about building systems that auditors can trust,
-          operations teams can understand, and engineers can maintain.
+          gateways, disbursement systems, integrations, and regulatory
+          compliance.
         </p>
       </section>
 
