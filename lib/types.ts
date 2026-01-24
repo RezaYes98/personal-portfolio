@@ -37,3 +37,19 @@ export interface Project {
   frontmatter: ProjectFrontmatter
   content: string
 }
+
+export interface ArticleFrontmatter {
+  title: string              // "Building Reliable Payment Systems"
+  slug: string               // "building-reliable-payment-systems"
+  date: string               // "2024-12-15" (ISO 8601 format)
+  description: string        // Brief summary for list view and SEO
+  tags: string[]             // ["Fintech", "Payments", "Product Strategy"]
+  featured?: boolean         // Optional: highlight on home page
+  order?: number             // Optional: manual sort order
+}
+
+export interface Article {
+  slug: string
+  frontmatter: ArticleFrontmatter
+  content: string
+}
