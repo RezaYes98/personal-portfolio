@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   title: 'Reza Nur - Product Manager',
   description:
     'Product Manager specializing in fintech infrastructure, payments, and compliance. Building reliable, compliant systems at scale.',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   openGraph: {
     title: 'Reza Nur - Product Manager',
     description:
