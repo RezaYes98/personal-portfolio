@@ -18,3 +18,22 @@ export interface CaseStudy {
   frontmatter: CaseStudyFrontmatter  // Parsed metadata
   content: string                    // Raw markdown body
 }
+
+export interface ProjectFrontmatter {
+  title: string              // "CrossFit WOD API"
+  slug: string               // "crossfit-wod-api"
+  date: string               // "2024-03-15" (ISO 8601 format)
+  description: string        // Brief summary for list view and SEO
+  tags: string[]             // ["Node.js", "Express", "API"]
+  link?: string              // Optional: external URL to live project
+  github?: string            // Optional: GitHub repository URL
+  featured?: boolean         // Optional: highlight on home page
+  order?: number             // Optional: manual sort order
+  status?: string            // Optional: "active" | "archived" | "wip"
+}
+
+export interface Project {
+  slug: string
+  frontmatter: ProjectFrontmatter
+  content: string
+}

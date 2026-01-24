@@ -16,7 +16,7 @@ order: 1
 | --- | --- |
 | **Initiative** | Bank Indonesia **PJP Category 2** submission readiness |
 | **Status** | Submitted and currently under review |
-| **Duration** | Approximately 2 quarters |
+| **Duration** | Approximately 6 months |
 | **Role** | **Product Manager**, leading cross functional execution across Compliance, Engineering, QA, and Operations |
 
 ## Problem

@@ -11,6 +11,9 @@ export function Header() {
         <Link href="/case-studies" className="transition-colors hover:text-neutral-600 dark:hover:text-neutral-400">
           case studies
         </Link>
+        <Link href="/projects" className="transition-colors hover:text-neutral-600 dark:hover:text-neutral-400">
+          projects
+        </Link>
         <Link href="/articles" className="transition-colors hover:text-neutral-600 dark:hover:text-neutral-400">
           writing
         </Link>
