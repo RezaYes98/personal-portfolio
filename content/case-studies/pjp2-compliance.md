@@ -1,10 +1,10 @@
 ---
-title: "PJP2 Compliance Readiness: Service Flows, Test Strategy, and UAT Evidence"
+title: "PJP Compliance Readiness: Service Flows, Test Strategy, and UAT Evidence"
 slug: "pjp2-compliance"
 company: "Doitpay"
 role: "Product Manager"
 date: "2025-05-01"
-description: "Preparing Doitpay's Bank Indonesia PJP Category 2 submission: service flows, test strategy, and audit-ready UAT evidence."
+description: "Preparing Doitpay's Bank Indonesia PJP Category 1 Bundle 2 submission: service flows, test strategy, and audit-ready UAT evidence."
 tags: ["compliance", "fintech", "payment-gateway", "testing", "audit", "qris", "fraud-detection"]
 order: 1
 ---
@@ -13,14 +13,14 @@ order: 1
 
 | **Company** | Doitpay (Payment Gateway) |
 | --- | --- |
-| **Initiative** | Bank Indonesia **PJP Category 2** submission readiness |
+| **Initiative** | Bank Indonesia **PJP Category 1 Bundle 2** submission readiness |
 | **Status** | Submitted and currently under review |
 | **Duration** | Approximately 6 months |
 | **Role** | **Product Manager**, leading delivery across Compliance, Engineering, QA, and Operations |
 
 ## Problem
 
-Doitpay needed to demonstrate PJP2 operational readiness in a way that auditors could review efficiently. That required more than describing product behavior. It required clear service flows, repeatable testing, and defensible evidence that links scenarios to system outcomes.
+Doitpay needed to demonstrate PJP operational readiness in a way that auditors could review efficiently. That required more than describing product behavior. It required clear service flows, repeatable testing, and defensible evidence that links scenarios to system outcomes.
 
 At the same time, Doitpay was still in its early stages. Several flows were evolving, and the system did not yet capture all the data points typically expected for audit evidence.
 
@@ -49,7 +49,7 @@ The flow documentation became the source of truth that aligned Compliance, Engin
 
 ![QRIS service flow diagram](/case-studies/QRIS%20FLow.svg)
 
-### 2. Test strategy for PJP2 readiness
+### 2. Test strategy for PJP readiness
 
 **Objective:** Convert compliance expectations into an executable testing program with clear acceptance criteria.
 
@@ -113,7 +113,7 @@ I addressed this with three pragmatic moves.
 
 ## Results
 
-- Successfully packaged the submission documentation, testing strategy, and UAT evidence for PJP2 review. The review is ongoing.
+- Successfully packaged the submission documentation, testing strategy, and UAT evidence for PJP review. The review is ongoing.
 - Reduced cross team ambiguity by establishing shared reference artifacts for flows, scope, and evidence requirements.
 - Identified and prioritized missing evidence points, creating a roadmap to mature observability and auditability.
 

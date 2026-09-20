@@ -23,12 +23,12 @@ export default function HomePage() {
         <p className="t-body mb-6">
           The work so far: payment gateways, disbursement systems, integrations,
           and the regulatory side of moving other people's money. Lately, that's
-          meant preparing Doitpay's Bank Indonesia PJP Category 2 submission.
+          meant preparing Doitpay's Bank Indonesia PJP Category 1 Bundle 2 submission.
         </p>
         <p className="t-body">
           This site is the record: case studies with the constraints, the
           decisions, and the numbers (including the ones that never got measured),
-          plus essays on product and systems.
+          plus an essay on product and systems.
         </p>
       </section>
 
