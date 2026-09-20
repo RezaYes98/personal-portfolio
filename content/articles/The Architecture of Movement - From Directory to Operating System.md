@@ -8,8 +8,7 @@ tags:
   - Marketplace
   - Network-Effects
   - Wellness
-featured: "true"
-order: 1
+order: 2
 ---
 
 **TL;DR:** Wellness travel is currently suffering from high latency. I want to move Hause Lab from a static "Yellow Pages" directory to an intent-based decision engine. This is the technical roadmap for reducing the "Time to Sweat."

@@ -6,8 +6,7 @@ role: "Product Manager"
 date: "2025-09-01"
 description: "Implementing multi-provider disbursement routing with configurable rules, operational controls, and reconciliation tools to improve payout reliability and reduce single-provider dependency."
 tags: ["disbursement", "payouts", "routing", "fintech", "payment-gateway", "operations", "reconciliation"]
-featured: true
-order: 4
+order: 2
 ---
 
 ## Overview

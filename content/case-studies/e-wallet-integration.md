@@ -15,8 +15,7 @@ tags:
         "integration",
         "asynchronous",
     ]
-featured: true
-order: 2
+order: 3
 ---
 
 ## Overview

@@ -6,9 +6,7 @@ role: "Product Manager"
 date: "2023-03-01"
 description: "Building in-product refund flows and semi-automated review processes to improve worker retention, operational efficiency, and customer support effectiveness in a marketplace platform."
 tags: ["product-experience", "refunds", "worker-retention", "marketplace", "operations", "customer-support", "ltc"]
-featured: true
-order: 3
-external_url: "https://coda.io/@reza-nur/in-product-refunds-experience-to-retaining-our-worker-partners"
+order: 4
 ---
 
 > *Note: I can't show graphs of data due to confidentiality reason but happy to describe at high level*.

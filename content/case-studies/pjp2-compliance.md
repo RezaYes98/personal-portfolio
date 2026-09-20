@@ -6,7 +6,6 @@ role: "Product Manager"
 date: "2025-05-01"
 description: "Leading cross-functional execution to achieve Bank Indonesia PJP Category 2 submission readiness through comprehensive service flow documentation, test strategy development, and UAT evidence collection."
 tags: ["compliance", "fintech", "payment-gateway", "testing", "audit", "qris", "fraud-detection"]
-featured: true
 order: 1
 ---
 

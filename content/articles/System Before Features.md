@@ -7,8 +7,7 @@ tags:
   - product-management
   - systems-thinking
   - product-philosophy
-featured: true
-order: 2
+order: 1
 ---
 # Systems Before Features
 

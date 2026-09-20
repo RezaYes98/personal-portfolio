@@ -8,7 +8,6 @@ export interface CaseStudyFrontmatter {
   date: string               // "2024-06-15" (ISO 8601 format)
   description: string        // Brief summary for SEO meta tags
   tags: string[]             // ["Fintech", "Compliance", "Payments"]
-  featured?: boolean         // Optional: highlight on home page
   order?: number             // Optional: manual sort order
   external_url?: string      // Optional: external link instead of internal page
 }
@@ -27,7 +26,6 @@ export interface ProjectFrontmatter {
   tags: string[]             // ["Node.js", "Express", "API"]
   link?: string              // Optional: external URL to live project
   github?: string            // Optional: GitHub repository URL
-  featured?: boolean         // Optional: highlight on home page
   order?: number             // Optional: manual sort order
   status?: string            // Optional: "active" | "archived" | "wip"
 }
@@ -44,7 +42,6 @@ export interface ArticleFrontmatter {
   date: string               // "2024-12-15" (ISO 8601 format)
   description: string        // Brief summary for list view and SEO
   tags: string[]             // ["Fintech", "Payments", "Product Strategy"]
-  featured?: boolean         // Optional: highlight on home page
   order?: number             // Optional: manual sort order
 }
 
