@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <!-- Red-orange circular background (matching your profile) -->
-  <circle cx="64" cy="64" r="64" fill="#E74C3C"/>
-  
-  <!-- White text initials -->
-  <text x="64" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="700" text-anchor="middle" fill="white">RN</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img">
+  <title>Reza Nur</title>
+  <circle cx="64" cy="64" r="64" fill="#0D0D0D"/>
+  <g fill="#FFFFFF" transform="translate(26.397 85.638) scale(0.062000 -0.062000)">
+    <path d="M211 0H80V698H345Q447 698 501.0 640.0Q555 582 555 482Q555 405 519.5 352.5Q484 300 418 286L567 0H423L290 271H211ZM318 373Q371 373 394.0 394.5Q417 416 417 463V501Q417 548 394.0 569.5Q371 591 318 591H211V373Z"/>
+    <path transform="translate(600 0)" d="M189 501H179V0H67V698H228L411 197H421V698H533V0H372Z"/>
+  </g>
 </svg>
