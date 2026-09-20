@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <div>
       <section className="mb-16">
-        <p className="mb-6 leading-relaxed text-neutral-800 dark:text-neutral-200">
+        <p className="t-body mb-6">
           A product manager and builder. Currently working at{' '}
           <a
             href="https://doitpay.co"
@@ -20,20 +20,20 @@ export default function HomePage() {
           </a>{' '}
           building payment infrastructure.
         </p>
-        <p className="mb-6 leading-relaxed text-neutral-800 dark:text-neutral-200">
-        I've worked on projects like preparing for Bank Indonesia PJP certification, 
-        building core payments, and integration. These are the foundation that lets 
-        businesses operate with confidence.
+        <p className="t-body mb-6">
+          I've worked on projects like preparing for Bank Indonesia PJP
+          certification, building core payments, and integration. These are the
+          foundation that lets businesses operate with confidence.
         </p>
-        <p className="leading-relaxed text-neutral-800 dark:text-neutral-200">
-          I've spent the last few years working on fintech infrastructure: payment
-          gateways, disbursement systems, integrations, and regulatory
+        <p className="t-body">
+          I've spent the last few years working on fintech infrastructure:
+          payment gateways, disbursement systems, integrations, and regulatory
           compliance.
         </p>
       </section>
 
       <section className="mb-16">
-        <h2 className="mb-8 text-xl font-semibold tracking-tight">Case Studies</h2>
+        <h2 className="t-page mb-8 tracking-tight">Case Studies</h2>
         <div className="space-y-8">
           {caseStudies.map((caseStudy) => {
             const { frontmatter, slug } = caseStudy
@@ -50,18 +50,16 @@ export default function HomePage() {
                   className="group block"
                 >
                   <div className="mb-2 flex items-baseline justify-between gap-4">
-                    <h3 className="font-medium text-neutral-900 transition-colors group-hover:text-neutral-600 dark:text-neutral-100 dark:group-hover:text-neutral-400">
-                      {frontmatter.title}
-                    </h3>
-                    <time className="shrink-0 text-sm text-neutral-500">
+                    <h3 className="t-entry">{frontmatter.title}</h3>
+                    <time className="t-meta shrink-0 text-neutral-500">
                       {format(new Date(frontmatter.date), 'MMM yyyy')}
                     </time>
                   </div>
                   <div className="flex items-start justify-between gap-3">
-                    <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+                    <p className="t-meta text-neutral-600">
                       {frontmatter.description}
                     </p>
-                    <span className="shrink-0 text-neutral-400 transition-colors group-hover:text-neutral-600 dark:text-neutral-600 dark:group-hover:text-neutral-400">
+                    <span className="shrink-0 text-neutral-400 transition-colors group-hover:text-neutral-600">
                       →
                     </span>
                   </div>

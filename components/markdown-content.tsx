@@ -1,7 +1,5 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 interface MarkdownContentProps {
   content: string
@@ -9,48 +7,24 @@ interface MarkdownContentProps {
 
 export function MarkdownContent({ content }: MarkdownContentProps) {
   return (
-    <div className="prose prose-neutral max-w-none dark:prose-invert">
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={{
-        code({ inline, className, children, ...props }: any) {
-          const match = /language-(\w+)/.exec(className || '')
-          return !inline && match ? (
-            <SyntaxHighlighter
-              style={oneDark}
-              language={match[1]}
-              PreTag="div"
-              {...props}
-            >
-              {String(children).replace(/\n$/, '')}
-            </SyntaxHighlighter>
-          ) : (
-            <code className={className} {...props}>
-              {children}
-            </code>
-          )
-        },
-        h1: ({ children }) => (
-          <h1 className="mb-4 mt-8 text-4xl font-bold">{children}</h1>
-        ),
-        h2: ({ children }) => (
-          <h2 className="mb-3 mt-6 text-3xl font-bold">{children}</h2>
-        ),
-        h3: ({ children }) => (
-          <h3 className="mb-2 mt-4 text-2xl font-semibold">{children}</h3>
-        ),
-        p: ({ children }) => <p className="mb-4 leading-relaxed">{children}</p>,
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        h1: ({ children }) => <h1 className="t-page mt-8 mb-4">{children}</h1>,
+        h2: ({ children }) => <h2 className="t-sub mt-10 mb-3">{children}</h2>,
+        h3: ({ children }) => <h3 className="t-entry mt-7 mb-2">{children}</h3>,
+        p: ({ children }) => <p className="t-body mb-4">{children}</p>,
         ul: ({ children }) => (
           <ul className="mb-4 list-disc space-y-2 pl-6">{children}</ul>
         ),
         ol: ({ children }) => (
           <ol className="mb-4 list-decimal space-y-2 pl-6">{children}</ol>
         ),
-        li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+        li: ({ children }) => <li className="t-body">{children}</li>,
         a: ({ children, href }) => (
           <a
             href={href}
-            className="text-primary underline underline-offset-4 hover:text-primary/80"
+            className="text-foreground underline decoration-neutral-400 underline-offset-4 transition-colors hover:decoration-neutral-600"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -58,32 +32,31 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           </a>
         ),
         blockquote: ({ children }) => (
-          <blockquote className="border-l-4 border-neutral-300 pl-4 italic text-neutral-600 dark:border-neutral-700 dark:text-neutral-400">
+          <blockquote className="t-body border-l border-foreground pl-4 text-neutral-600">
             {children}
           </blockquote>
         ),
+        code: ({ children }) => (
+          <code className="bg-neutral-100 px-1">{children}</code>
+        ),
+        hr: () => <hr className="border-neutral-200" />,
         table: ({ children }) => (
           <div className="my-6 overflow-x-auto">
-            <table className="min-w-full divide-y divide-neutral-200 dark:divide-neutral-800">
-              {children}
-            </table>
+            <table className="min-w-full">{children}</table>
           </div>
         ),
-        thead: ({ children }) => (
-          <thead className="bg-neutral-50 dark:bg-neutral-900">{children}</thead>
+        tbody: ({ children }) => (
+          <tbody className="divide-y divide-neutral-200">{children}</tbody>
         ),
         th: ({ children }) => (
-          <th className="px-4 py-3 text-left text-sm font-semibold">
+          <th className="t-meta border-b border-neutral-200 px-4 py-3 text-left font-semibold">
             {children}
           </th>
         ),
-        td: ({ children }) => (
-          <td className="px-4 py-3 text-sm">{children}</td>
-        ),
-        }}
-      >
-        {content}
-      </ReactMarkdown>
-    </div>
+        td: ({ children }) => <td className="t-meta px-4 py-3">{children}</td>,
+      }}
+    >
+      {content}
+    </ReactMarkdown>
   )
 }
