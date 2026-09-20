@@ -9,7 +9,7 @@ export default function HomePage() {
     <div>
       <section className="mb-16">
         <p className="t-body mb-6">
-          A product manager and builder. Currently working at{' '}
+          I'm a product manager and builder. Currently working at{' '}
           <a
             href="https://doitpay.co"
             target="_blank"
@@ -18,17 +18,17 @@ export default function HomePage() {
           >
             Doitpay
           </a>{' '}
-          building payment infrastructure.
+          on payment infrastructure.
         </p>
         <p className="t-body mb-6">
-          I've worked on projects like preparing for Bank Indonesia PJP
-          certification, building core payments, and integration. These are the
-          foundation that lets businesses operate with confidence.
+          The work so far: payment gateways, disbursement systems, integrations,
+          and the regulatory side of moving other people's money. Lately, that's
+          meant preparing Doitpay's Bank Indonesia PJP Category 2 submission.
         </p>
         <p className="t-body">
-          I've spent the last few years working on fintech infrastructure:
-          payment gateways, disbursement systems, integrations, and regulatory
-          compliance.
+          This site is the record: case studies with the constraints, the
+          decisions, and the numbers (including the ones that never got measured),
+          plus essays on product and systems.
         </p>
       </section>
 

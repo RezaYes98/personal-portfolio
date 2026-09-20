@@ -17,7 +17,7 @@ order: 2
 | **Status** | Multi provider routing is live |
 | **Initial constraint** | Limited initial bank coverage |
 | **Success metrics** | Reliability and success rate |
-| **Role** | Product Manager, leading cross functional delivery across Engineering, Operations, and Compliance |
+| **Role** | Product Manager, leading delivery across Engineering, Operations, and Compliance |
 
 ## Problem
 

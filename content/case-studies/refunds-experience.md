@@ -4,144 +4,89 @@ slug: "refunds-experience"
 company: "Kanggo"
 role: "Product Manager"
 date: "2023-03-01"
-description: "Building in-product refund flows and semi-automated review processes to improve worker retention, operational efficiency, and customer support effectiveness in a marketplace platform."
+description: "Building an in-product refund flow and a semi-automated review process to turn refunds from an ops cost into a retention tool, plus the number we never fully measured."
 tags: ["product-experience", "refunds", "worker-retention", "marketplace", "operations", "customer-support", "ltc"]
 order: 4
 ---
 
-> *Note: I can't show graphs of data due to confidentiality reason but happy to describe at high level*.
+> *I can't show the graphs. That data stays with Kanggo. Happy to describe the numbers at a high level.*
 
-**Agenda**
+## Overview
 
-- Context on Refunds: What, Why, Who
-- Refunds MVP Spec 
-- Challenges
-- Outcomes
-## Refunds Context
-
-### Not all projects are created equal...
-
-This is the clearest example (i.e. customer cancel the project) but there are other reasons (i.e. getting the same lead twice, project violates ToS, project details change significantly). Some of the pain worker were experiencing was due to the refunds policy rather than the mechanism. 
-
-This resulted in very low pro NPS/LTC 
-
-Problems: 
-
-- Really frustrating user experience
-- Inefficient from an operations perspective and application of refund policy. 
-
-### Pain Points
-
-- **Worker**
-  - As a worker, there isn't an easy way to request a refund when I receive a bad project. 
-  - As a worker, I don't get refunded for all kinds of bad projects (i.e. customer doesn't even view my response). 
-  - As a worker, I don't feel that Kanggo has my back because it's overly stingy with how it gives out refunds. 
-- **Customer Support agent**
-  - As a CS agent, if a worker is on the phone, I feel that I have to give them a refund even if it's not in the policy because it's directly tied with how I get evaluated. 
-- **Kanggo**
-  - Worker Likelihood to Continue (LTC) score is low and chargeback rate is high, signaling that there are product-market fit issues with our worker product. 
-  - There is no central team evaluating refunds, resulting in inefficient application of the refund policy. 
-
-## Refunds MVP Scoping
-
-### Goals of Refund MVP
-| Metric | Outcome |
+| **Company** | Kanggo (Marketplace) |
 | --- | --- |
-| Feature adoption & usage | Dominant refunds channel within 2 weeks of full rollout, processing 5+ refunds requests per week. 80% funnel completion rate. |
-| Increase in Worker LTC and Retention | LTC increase when compared to comparable channels with similar grant rates (53% vs 47% for email). <br/>Retention: didn't examine until we changed refund policy significantly w/ price assurance, which resulted in ~5% increase.  |
-| Improved operational efficiency (support cost per refund case) | Never fully measured. but estimated savings ~IDR 50 millions per year (it's small because the company stage is also still very early, and the market still premature). |
-| Guardrail on revenue | Didn't surpass revenue guardrail.  |
+| **Theme** | Turning refunds from an ops cost into a retention tool |
+| **Status** | Shipped, the dominant refunds channel within 2 weeks of full rollout |
+| **Initial constraint** | No central team owned refunds. Workers saw the policy as unfair and inconsistent |
+| **Success metric** | Worker LTC and retention. Support cost per refund case |
+| **Role** | Product Manager: scoped the MVP, defined the launch bar with design and engineering, planned the staged rollout with Customer Support |
 
-### What's the best refund strategy to optimize for the above goals?
-| Option | Description | Improve worker retention, LTC, or chargeback? | Improve operational efficiency? | Revenue impact |
-| --- | --- | --- | --- | --- |
-| A: Be stingy (status quo). | Give fewer refunds and only when there is a clear breach in our promise to the worker (e.g. ToS). | No - Worker currently perceive policy as unfair and inconsistent. | No - Increased operational cost given time/$$ spent scrutinizing. | Minimal given that this is the current world. |
-| B: Make workers work for it | Given refund for places even where there isn't a breach in our promise to workers, but require workers to submit extensive proof and/or work. | Maybe, although this sends a message to workers that we don't trust them. | Maybe - we'll have clearer guidelines but it will still require agent time to go through them. | Mixed - Depending on implementation, we could be giving out fewer refunds, but there is still operation cost. |
-| **C: Use refunds as "Product experience crutch"** | **Use refunds as a mechanism to close product gaps. This means we would lean towards granting refunds rather than litigating refund requests and will monitor for feature abuse.** | **Yes - We'll give refunds for worker frustration moments, and use as a carrot to educate workers** | **Yes - We'll default to giving out refunds rather than scrutinizing, which will reduce ops time.** | **Some impact as we'll be giving out more refunds, but we'll be saving $$ on operational cost.** |
+## Problem
 
-### Refunds MVP
+On Kanggo, workers find projects through the marketplace. When a project goes bad (the customer cancels, the same lead reaches two workers, the brief changes, or the project breaks our terms), the only way to ask for a refund was to email support. Those refunds were slow, inconsistent, and stingy, and workers noticed. Pro NPS and likelihood to continue (LTC) were low, and chargebacks were high.
 
-- **Overall theme:** Build the infrastructure for future changes to refunds. 
-  - Workstream 1: Build in-product refund flow in-product across mobile app. 
-  - Workstream 2: Semi-automate refunds review process on the operations side. 
-- **Post-MVP:** 
-  - Iterations to the refunds flow
-  - V2 features to refunds flow (i.e. refunds view status page)
-  - Make changes to the refunds policy (i.e. unresponsive customer). 
+The pain showed up in three places.
 
-### Refunds MVP Teams + Tasks
-| Workstream | High-Level Tasks | Teams |
+**Workers** had no easy way to ask for a refund, and didn't get refunded for many bad projects, including ones where the customer never even viewed their response. The policy read as unfair. Workers didn't feel Kanggo had their back.
+
+**Support agents** on the phone felt they had to grant refunds even when the policy said no. Their performance reviews were tied to it.
+
+**The company** saw low LTC and high chargebacks, signs of a product problem, not just a policy problem. And no central team owned refund evaluation, so the policy was applied inconsistently.
+
+## The decision
+
+| Option | What it means | The catch |
 | --- | --- | --- |
-| Build in-product refund flow in-product across mobile app. | Designs completed + research<br/>Build out new backend to track refunds  + status, connect with Qontak for CS tracking<br/>Front-end implementation of refunds flow<br/>GTM rollout | Engineer<br/>UI/UX<br/>Legal<br/><br/>(5 Peoples) |
-| Semi-automate refunds review process on the operations side.  | Create new team solely focused on refunds processing, align with Trust & Safety. <br/>Get alignment on V0 refund policy with leadership<br/>Train agents <br/>GTM rollout | Customer Supportt<br/>Legal<br/>Field Officer<br/><br/>(5 Peoples) |
+| A. Stay stingy | Refund only clear breaches of our promise to the worker (say, ToS violations) | Workers already saw the policy as unfair and inconsistent, and scrutinizing every case cost ops time |
+| B. Make workers work for it | Refund more cases, but require extensive proof and effort | Tells workers we don't trust them, and agents still go through every case by hand |
+| **C. Refunds as product experience** | Grant refunds by default to close product gaps, educate workers along the way, and watch for abuse | More refunds go out. In exchange, less ops time, and a frustration point turned into a retention mechanism |
+
+We picked C. The MVP's job was to build the infrastructure that made it real.
+
+## What I Delivered
+
+### 1. An in-product refund flow
+
+- Refund requests from inside the mobile app, instead of email
+- A new backend to track refunds and their status, wired to Qontak so support could track cases
+- Built by a five-person workstream across engineering, design, and legal
+
+### 2. A semi-automated review process
+
+- A dedicated refunds processing team, aligned with Trust & Safety
+- A V0 refund policy that leadership signed off on
+- Agent training before rollout
+
+Kickoff in November, 5% rollout in January, and 100% by early March. End to end in about four months.
 
 ## Challenges
 
-### Challenge 1: MVP designs
+### 1. Design speed vs. research
 
-- Challenge: to launch this project by end of Q4, we needed designs ASAP so engineer can start scoping. 
-  - However, the designer to this project was new to this area, and wanted to conduct research to make sure we were on the right track. 
-- Solution: 
-  - Designer taken off other projects to solely focus on ramping up on in-product refunds. 
-  - Did user research of MVP designs with field officer instead of workers to get feedback faster.  
+To hit the Q4 launch, engineering needed designs fast. The designer was new to this area and wanted to run research first. Fix: they were pulled off other projects to focus on refunds, and we tested MVP designs with a field officer instead of workers to get feedback faster.
 
-### Challenge 2: Trust & Safety w/ Operations Rollout
+### 2. A Trust & Safety requirement we'd missed in scoping
 
-- Challenge: 
-  - Trust & Safety (T&S) needs to review all free text responses coming into TT for any T&S concerns, but we didn't consider this requirement in MVP scoping. 
-- Solution: 
-  - Setup meeting with T&S and refunds operations folks to align on how we'd align the process and SLA for T&S reviewal of refund requests. Didn't require any significant headcount adjustments. 
-  - Aligned on scope for how to deal with refund processing if there is a T&S concern (came up with new email copy). 
+Trust & Safety reviews all free-text responses for safety concerns, a requirement we hadn't scoped. Fix: a working session with T&S and refunds ops to align on process and SLA (no new headcount needed), plus new email copy for cases with a T&S concern.
 
-### Challenge 3: How to define launch readiness + rollout
+### 3. Defining launch readiness, and a rollout support could staff
 
-- Challenge
-  - There wasn't a clear idea of what is/isn't a launchblocking bug because no frontend TL. 
-  - Customer Support (CS) had concerns about an increase in refund volume after launch and wanted a way to understand how to allocate appropriate staffing to maintain refunds SLA. 
-- Solution
-  - I put together a process on defining launchblocking bug w/ design + engineer (P0 = blocking critical user journey and/or easy polish, P1 = nice-to-haves medium-sized bugs, P2 = complicated non-launch blocking bugs). 
-  - We put together a staged rollout plan (i.e. 5%, 25%, 50%, and 100% rollout) so CS had enough time to get data on refund volume and adjust staffing accordingly. 
+No frontend tech lead meant no clear bar for what blocked launch. And Customer Support worried about refund volume after launch. They wanted a way to allocate staffing and hold the refunds SLA. Fix: I put together launch-blocking bug levels with design and engineering (P0 = blocks a critical user journey, P1 = medium bugs, P2 = complicated, non-blocking), and we rolled out in stages (5%, 25%, 50%, 100%), so CS could watch volume and adjust staffing.
 
-## Outcome
+## Results
 
-> *Note: I left the team in end of Q1.* 
-
-### View of Goals of Refund MVP
 | Metric | Outcome |
 | --- | --- |
-| Feature adoption & usage | Dominant refunds channel within 2 weeks of full rollout, processing 5+ refunds requests per week. 80% funnel completion rate. |
-| Increase in Worker LTC and Retention | LTC increase when compared to comparable channels with similar grant rates (53% vs 47% for email). <br/>Retention: didn't examine until we changed refund policy significantly w/ price assurance, which resulted in ~5% increase.  |
-| Improved operational efficiency (support cost per refund case) | Never fully measured. but estimated savings ~IDR 50 millions per year (it's small because the company stage is also still very early, and the market still premature). |
-| Guardrail on revenue | Didn't surpass revenue guardrail.  |
+| Feature adoption and usage | Dominant refunds channel within 2 weeks of full rollout. 5+ requests per week. 80% funnel completion. |
+| Worker LTC | 53% vs 47% for email refunds, at comparable grant rates |
+| Retention | Not examined at launch. When we later changed the policy significantly (price assurance), retention rose ~5%. |
+| Support cost per refund case | Never fully measured. Estimated at ~IDR 50 million per year in savings. Small, because the company and the market were both early. |
+| Revenue guardrail | Not crossed |
 
-### Personal Learnings
+I left the team at the end of Q1, so the rollout numbers above are from the team's tracking.
 
-- Grew by: 
-  - First large cross-functional project across two different engineering teams. 
-  - First time working intensively with our operations team. 
-  - First time at Kanggo building relationships between different types of teams. 
-- Could be betters for next time: 
-  - Spend more time with engineering scoping MVP. 
-  - Conduct product review earlier to capture feedback from broader product development team. 
-  - More analytics resources to fully measure outcomes of the project
+## What I would improve next
 
-## Appendix
-
-| 1st week of Nov: | Week 3 Nov: | Week 1 Dec: | Week 2 December: | Week 1 Jan: | Week 1 March: |
-| --- | --- | --- | --- | --- | --- |
-| kickoff in-product refunds project | Designs finalized | Backend spec finalized | new refunds team finalized, training scheduled.  | 5% rollout for refunds | 100% rollout for refunds |
-
-### What are the entry points for refunds?
-
-- **In-product entry points**
-  - On-track to be shipped
-    - In-product scam reporting flow (IPSR)
-    - Report button within conversation (Decline flow)
-    - Payments history
-  - Other ideas
-    - Automatically grant refunds (with education on how to request refund in the future)
-    - Within overflow menu as a separate CTA
-- Phone (i.e. agents on phone tell workers who have requested refunds to do it in product)
-- Help center
-- In-App mail campaign to educate workers
-
+- Scope the MVP with engineering earlier. More time together before we committed.
+- Run product review earlier to capture feedback from the broader product development team.
+- Get the analytics resources to measure outcomes properly, instead of estimating them.

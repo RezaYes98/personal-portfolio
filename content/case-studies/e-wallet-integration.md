@@ -25,7 +25,7 @@ order: 3
 | **Theme**              | Shipping a reliable e-wallet checkout flow with strong status consistency                             |
 | **Checkout type**      | Redirect and jumpapp only                                                                             |
 | **Confirmation model** | Provider callback and merchant webhooks, without polling                                              |
-| **Role**               | Product Manager, leading cross functional delivery across Engineering, QA, Operations, and Compliance |
+| **Role**               | Product Manager, leading delivery across Engineering, QA, Operations, and Compliance |
 
 ## Problem
 

@@ -4,7 +4,7 @@ slug: "pjp2-compliance"
 company: "Doitpay"
 role: "Product Manager"
 date: "2025-05-01"
-description: "Leading cross-functional execution to achieve Bank Indonesia PJP Category 2 submission readiness through comprehensive service flow documentation, test strategy development, and UAT evidence collection."
+description: "Preparing Doitpay's Bank Indonesia PJP Category 2 submission: service flows, test strategy, and audit-ready UAT evidence."
 tags: ["compliance", "fintech", "payment-gateway", "testing", "audit", "qris", "fraud-detection"]
 order: 1
 ---
@@ -16,7 +16,7 @@ order: 1
 | **Initiative** | Bank Indonesia **PJP Category 2** submission readiness |
 | **Status** | Submitted and currently under review |
 | **Duration** | Approximately 6 months |
-| **Role** | **Product Manager**, leading cross functional execution across Compliance, Engineering, QA, and Operations |
+| **Role** | **Product Manager**, leading delivery across Compliance, Engineering, QA, and Operations |
 
 ## Problem
 
