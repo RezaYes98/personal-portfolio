@@ -74,8 +74,8 @@ The flow documentation became the source of truth that aligned Compliance, Engin
 
 | **Code** | **Description** | **Trigger** |
 | --- | --- | --- |
-| **VEL_SPIKE** | Sudden surge in transaction volume for a merchant relative to historical, and amount average | Real‑time |
-| **ODD_HOURS** | Follow VEL_SPIKE rules, with average times historical | Real‑time |
+| **VEL_SPIKE** | Sudden surge in transaction volume for a merchant relative to historical, and amount average | Real-time |
+| **ODD_HOURS** | Follow VEL_SPIKE rules, with average times historical | Real-time |
 | **DORMANT** | Merchant inactive ≥ 6 months | Daily batch |
 | **HIGH_VALUE_DISB** | Cumulative disbursement transactions >= IDR 500 million/day to the same beneficiary account | 30 minutes before closing |
 
