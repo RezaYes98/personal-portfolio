@@ -9,7 +9,6 @@ tags:
   - product-philosophy
 order: 1
 ---
-# Systems Before Features
 
 Strong products do not win by shipping more features. They win by building systems that make future features easier and cheaper to deliver.
 
