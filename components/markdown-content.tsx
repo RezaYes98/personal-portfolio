@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { isValidElement, type ReactElement } from 'react'
 
 interface MarkdownContentProps {
   content: string
@@ -13,7 +14,29 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
         h1: ({ children }) => <h1 className="t-page mt-8 mb-4">{children}</h1>,
         h2: ({ children }) => <h2 className="t-sub mt-10 mb-3">{children}</h2>,
         h3: ({ children }) => <h3 className="t-entry mt-7 mb-2">{children}</h3>,
-        p: ({ children }) => <p className="t-body mb-4">{children}</p>,
+        p: ({ children }) => {
+          const arr = Array.isArray(children) ? children : [children]
+          const only = arr.length === 1 ? arr[0] : null
+          const isFigure =
+            !!only &&
+            isValidElement(only) &&
+            typeof (only as ReactElement<{ src?: unknown }>).props?.src === 'string'
+          if (isFigure) return <>{only}</>
+          return <p className="t-body mb-4">{children}</p>
+        },
+        img: ({ src, alt }) => (
+          <figure className="my-8">
+            <img
+              src={typeof src === 'string' ? src : undefined}
+              alt={alt ?? ''}
+              loading="lazy"
+              className="w-full"
+            />
+            {alt ? (
+              <figcaption className="t-meta mt-3 text-neutral-600">{alt}</figcaption>
+            ) : null}
+          </figure>
+        ),
         ul: ({ children }) => (
           <ul className="mb-4 list-disc space-y-2 pl-6">{children}</ul>
         ),
