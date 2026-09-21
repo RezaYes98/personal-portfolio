@@ -6,7 +6,7 @@ role: "Product Manager"
 date: "2023-03-01"
 description: "Building an in-product refund flow and a semi-automated review process to turn refunds from an ops cost into a retention tool, plus the number we never fully measured."
 tags: ["product-experience", "refunds", "worker-retention", "marketplace", "operations", "customer-support", "ltc"]
-order: 4
+order: 5
 ---
 
 > *I can't show the graphs. That data stays with Kanggo. Happy to describe the numbers at a high level.*

@@ -6,6 +6,22 @@ interface MarkdownContentProps {
   content: string
 }
 
+const FIGURE_PREFIX = '/case-studies/merchant-payments-fig-'
+
+function FigureCaption({ alt }: { alt?: string }) {
+  if (!alt) return null
+  const parsed = alt.match(/^(Fig\. \d+)([\s\S]*)$/)
+  if (!parsed) {
+    return <figcaption className="t-meta mt-3 text-neutral-600">{alt}</figcaption>
+  }
+  return (
+    <figcaption className="t-meta mt-3 text-neutral-500">
+      <span className="font-semibold text-neutral-600">{parsed[1]}</span>
+      {parsed[2]}
+    </figcaption>
+  )
+}
+
 export function MarkdownContent({ content }: MarkdownContentProps) {
   return (
     <ReactMarkdown
@@ -24,19 +40,36 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           if (isFigure) return <>{only}</>
           return <p className="t-body mb-4">{children}</p>
         },
-        img: ({ src, alt }) => (
-          <figure className="my-8">
-            <img
-              src={typeof src === 'string' ? src : undefined}
-              alt={alt ?? ''}
-              loading="lazy"
-              className="w-full"
-            />
-            {alt ? (
-              <figcaption className="t-meta mt-3 text-neutral-600">{alt}</figcaption>
-            ) : null}
-          </figure>
-        ),
+        img: ({ src, alt }) => {
+          const isFigure = typeof src === 'string' && src.startsWith(FIGURE_PREFIX)
+          if (isFigure) {
+            return (
+              <figure className="my-8">
+                <div className="overflow-x-auto">
+                  <img
+                    src={src}
+                    alt={alt ?? ''}
+                    loading="lazy"
+                    width={624}
+                    className="max-w-none"
+                  />
+                </div>
+                <FigureCaption alt={alt} />
+              </figure>
+            )
+          }
+          return (
+            <figure className="my-8">
+              <img
+                src={typeof src === 'string' ? src : undefined}
+                alt={alt ?? ''}
+                loading="lazy"
+                className="w-full"
+              />
+              <FigureCaption alt={alt} />
+            </figure>
+          )
+        },
         ul: ({ children }) => (
           <ul className="mb-4 list-disc space-y-2 pl-6">{children}</ul>
         ),
@@ -44,16 +77,18 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           <ol className="mb-4 list-decimal space-y-2 pl-6">{children}</ol>
         ),
         li: ({ children }) => <li className="t-body">{children}</li>,
-        a: ({ children, href }) => (
-          <a
-            href={href}
-            className="text-foreground underline decoration-neutral-400 underline-offset-4 transition-colors hover:decoration-neutral-600"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {children}
-          </a>
-        ),
+        a: ({ children, href }) => {
+          const internal = typeof href === 'string' && href.startsWith('/')
+          return (
+            <a
+              href={href}
+              className="text-foreground underline decoration-neutral-400 underline-offset-4 transition-colors hover:decoration-neutral-600"
+              {...(internal ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+            >
+              {children}
+            </a>
+          )
+        },
         blockquote: ({ children }) => (
           <blockquote className="t-body border-l border-foreground pl-4 text-neutral-600">
             {children}

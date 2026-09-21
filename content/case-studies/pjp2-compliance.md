@@ -6,7 +6,7 @@ role: "Product Manager"
 date: "2025-05-01"
 description: "Preparing Doitpay's Bank Indonesia PJP Category 1 Bundle 2 submission: service flows, test strategy, and audit-ready UAT evidence."
 tags: ["compliance", "fintech", "payment-gateway", "testing", "audit", "qris", "fraud-detection"]
-order: 1
+order: 2
 ---
 
 ## Overview
