@@ -70,7 +70,7 @@ export default async function CaseStudyPage({
       </Link>
 
       <header className="mb-12">
-        <h1 className="t-page mb-4 tracking-tight">{frontmatter.title}</h1>
+        <h1 className="t-page mb-4">{frontmatter.title}</h1>
         <div className="t-meta flex items-center gap-3 text-neutral-600">
           <span>{frontmatter.company}</span>
           <span>·</span>

@@ -21,7 +21,7 @@ export default function ProjectsPage() {
 
   return (
     <div>
-      <h1 className="t-page mb-12 tracking-tight">Projects</h1>
+      <h1 className="t-page mb-12">Projects</h1>
       <div className="space-y-8">
         {projects.map((project) => {
           const { frontmatter, slug } = project

@@ -12,11 +12,11 @@ function FigureCaption({ alt }: { alt?: string }) {
   if (!alt) return null
   const parsed = alt.match(/^(Fig\. \d+)([\s\S]*)$/)
   if (!parsed) {
-    return <figcaption className="t-meta mt-3 text-neutral-600">{alt}</figcaption>
+    return <figcaption className="t-body mt-3 text-sm text-neutral-600">{alt}</figcaption>
   }
   return (
-    <figcaption className="t-meta mt-3 text-neutral-500">
-      <span className="font-semibold text-neutral-600">{parsed[1]}</span>
+    <figcaption className="t-body mt-3 text-sm text-neutral-500">
+      <span className="font-medium text-neutral-600">{parsed[1]}</span>
       {parsed[2]}
     </figcaption>
   )
@@ -107,7 +107,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           <tbody className="divide-y divide-neutral-200">{children}</tbody>
         ),
         th: ({ children }) => (
-          <th className="t-meta border-b border-neutral-200 px-4 py-3 text-left font-semibold">
+          <th className="t-meta border-b border-neutral-200 px-4 py-3 text-left font-medium">
             {children}
           </th>
         ),

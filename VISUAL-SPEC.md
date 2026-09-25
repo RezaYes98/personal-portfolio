@@ -141,3 +141,145 @@ supplies one line, same slot as the articles "Coming soon" pattern).
 5. Chroma count = 0 outside the neutral ramp; no `thead` fill; no synthetic italic.
 6. One focus rule visible on nav and links; hover never changes text color, scale, or shadow.
 7. No `.dark` tokens, no `dark:` variants, no `!important` left in `globals.css`.
+
+---
+
+## 10. DM Sans redesign (owner-directed; supersedes §§1–2, 4–5, 9 where they differ)
+
+Direction: proportional warmth for voice and titles; mono stays where it reads honest
+(dates, tags, micro-labels, code surfaces, figure interiors). Autopilot-subtle: soft
+contrast + one ghost shape + air with purpose. No cards, no pills, no shadows, no accent.
+Two families, two weights each max, neutral ramp untouched.
+
+### 10.1 Fonts — DM Sans voice, Plex document (measured)
+
+- **DM Sans, static instances, weights 400 + 500 only, latin.**
+  `DM_Sans({ weight: ['400','500'], subsets: ['latin'], variable: '--font-dm-sans' })`
+  — same loader shape as today's Plex loader, minimal diff. Static, not variable:
+  with static instances the ladder is enforced by availability (a stray 600 falls back
+  to 500 under `font-synthesis: none` instead of rendering); variable would ship a
+  100–1000 range and let any 600/700 literal silently break the max-weight gate.
+- **opsz omitted** (wght-only instances, no axes). At our scale — max 24px wordmark
+  against an opsz 9–40 range — the optical delta is negligible; the axis buys file
+  size and verification burden for ~zero visible effect. Revisit only if display type
+  above 40px ever enters the system.
+- **IBM Plex Mono retained, trimmed to weight 400 only**, for document registers
+  (§10.3). Nothing on the page needs Plex 600 after the emphasis register moves to
+  DM Sans 500 (figure interiors carry their own embedded subsets and never touch the
+  page font). Payloads (latin woff2, desktop UA): Plex today ≈ 10KB; DM Sans static
+  ≈ 37KB total; worst case still noise next to the ~146KB of figure payload.
+- Nothing else sneaks in: latin subset + default preload (other subsets are
+  unicode-range-gated and never fetch for our ASCII copy); style normal (no italics,
+  matches the no-synthetic rule); display swap; adjustFontFallback stays on.
+  `font-synthesis: none` stays as guardrail — anything missed degrades instead of
+  faux-bolding, but the code says the right weight explicitly.
+- Fallback stacks: DM Sans → `var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif`;
+  Plex keeps its mono stack. Body defaults to the DM Sans stack.
+
+Measure (canvas-verified before speccing): DM Sans 400 averages **8.34px**/letter
+(500: 8.54px) against Plex Mono's flat 9.6px — ~13% narrower. Body at 16px/624px
+moves from 65ch to **~75ch**, the top of the 60–75 gate. Container stays 624;
+proofing re-verifies on the running assembly (§10.8).
+
+### 10.2 Ladder — role → family + step
+
+| role        | family  | px / lh | weight | tracking | where                                        |
+| ----------- | ------- | ------- | ------ | -------- | -------------------------------------------- |
+| site title  | DM Sans | 24 / 32 | 500    | -0.02em  | wordmark (the handshake slot)                |
+| page title  | DM Sans | 22 / 30 | 500    | -0.01em  | detail h1, list h1, home "Case Studies" head |
+| sub-head    | DM Sans | 18 / 26 | 500    | 0        | md h2 — mt 40, mb 12                         |
+| entry title | DM Sans | 16 / 26 | 500    | 0        | list rows, md h3 — mt 28, mb 8               |
+| body        | DM Sans | 16 / 26 | 400    | 0        | prose, lede — p mb 16                        |
+| meta        | Plex    | 14 / 20 | 400    | 0        | nav, back links, meta rows                   |
+| micro       | Plex    | 12 / 16 | 400    | 0        | dates, tags                                  |
+
+Rules (carry from §2, revised):
+- Markdown headings map to these steps and **never exceed the page title**: md h2 = 18,
+  md h3 = 16, md h1 (if ever used) = 22 max.
+- Below the page title, **weight differentiates, not size** — entry titles and h3 are
+  body-size at 500.
+- **No weight above 500 anywhere on the page** (was: 600). `strong` in prose = 500.
+  The emphasis register renames 600 → 500 ladder-wide: DM Sans 500 Medium carries the
+  role Plex 600 did. (Curator's "Fig. N stays 600" lock is honored as the emphasis
+  step — same anchor, new numeral; a literal 600 would render as 500 anyway.)
+- Nothing below 12px.
+- Split principle: narrative voice (titles, prose, captions, blockquote, links) in
+  DM Sans; instrument panel (nav, dates, tags, meta rows) in Plex. Captions tie to the
+  article, figures stay artifacts — caption sentence moves to DM Sans 400 14/20
+  neutral-500, "Fig. N" prefix to DM Sans 500 neutral-600, same size, mt 12 unchanged.
+  Figure SVGs untouched (embedded Plex stands).
+
+### 10.3 Wrap locks (curator — verified at 1280 + 390, not in markup)
+
+Order is data: no truncation, no clamping of list titles or descriptions; refunds
+description runs full, punchline at the end.
+- Merchant title (73 chars): natural break after the colon; never strand "API" alone
+  on line three. `text-wrap: balance` on detail h1 + list entry titles serves this —
+  pure CSS, no content change — proofing confirms.
+- No-break joins (proofing checks; a break here is a finding, and any nbsp fix is a
+  copy change for the curator, not the build): `Webhook-Based` together (E-wallet
+  title); `Bundle 2` together; `PJP Category 1 Bundle 2` together in hero and title.
+
+### 10.4 Surface — two elements only
+
+- **Wash:** `background-image: radial-gradient(640px 260px at 50% 0%, #F5F5F5 0%,
+  rgba(245,245,245,0) 70%)` on the hero element itself — never a separate positioned
+  layer (backgrounds can't overflow; problem eliminated by construction). Stops
+  restricted to neutral-100 → transparent (chroma gate holds). No `filter: blur()`
+  (paints outside the box, costs a mobile compositor layer); plain gradient with
+  transparent falloff only. Static — no animation, no transition. No viewport units,
+  no negative offsets. Paper `#FFFFFF` everywhere else. Text contrast unchanged
+  (ink on near-white).
+- **Ghost RN:** the favicon's RN outlines as a separate asset, `160px` desktop /
+  `96px` at 390, ink at `0.06` opacity, `aria-hidden`, `pointer-events: none`, no
+  tabindex, no hover. Right of the wordmark on desktop; must never cause overflow
+  (scrollW == innerWidth at 390). If it ever fights the text, it loses — hidden
+  under `360px`.
+
+### 10.5 States (revised for the 500 ceiling)
+
+- **Hover:** the quietest ink in the element steps one notch toward ink (**400→500**).
+  Text already at 500/ink never changes color. No scale, no shadow, no color.
+- **Focus-visible:** unchanged — `outline: 2px solid var(--foreground);
+  outline-offset: 2px`, one rule site-wide.
+- **Nav:** resting neutral-600 (Plex 400); current page ink + underline,
+  `aria-current="page"`. **Prose links:** ink text, underline neutral-400 offset 4 →
+  hover decoration neutral-600.
+
+### 10.6 Figures
+
+Delivered SVGs ship untouched. The img→figure+figcaption map is font-agnostic, no
+change needed. Caption register per §10.2. Scanner checks (chroma/weight/size) are
+font-independent — no harness changes. Convention holds for future figures: keep
+embedding the mono subsets; the renderer never needs to know.
+
+### 10.7 Implementation inventory (build lane)
+
+- `app/layout.tsx`: loader swap (DM Sans static 400+500 latin `--font-dm-sans`;
+  Plex trims to `['400']`); fallback stacks per §10.1.
+- `app/globals.css`: body family → DM Sans stack; `b/strong` 600→500; `t-site`
+  (DM Sans 500, tracking -0.02em), `t-page` (DM Sans 500, 22/30, -0.01em), `t-sub` /
+  `t-entry` (DM Sans 500); `t-body` (DM Sans 400); `t-meta` / `t-micro` (Plex stack,
+  explicit); `text-wrap: balance` on `t-page` + list entry titles; blockquote inherits
+  voice; wash class; ghost placement.
+- Caption renderer (figure map): figcaption DM Sans split per §10.2
+  (`font-semibold` → `font-medium` on the prefix); `th` cells → 500.
+- Sweep thresholds: max-weight 500, body-sans check. No renderer or content changes.
+
+### 10.8 Acceptance — verify on the running assembly, not the diff
+
+1. `document.fonts` shows DM Sans at **400 and 500 only** + Plex Mono 400; body
+   computes to DM Sans 16px.
+2. No hierarchy inversion: 24 > 22 > 18 > 16 (500) > 16 (400). No markdown heading
+   larger than its page title.
+3. No rendered weight above **500** anywhere (spot-check `strong` in tables,
+   caption prefixes, `th`).
+4. Measure 60–75ch in the 624px container, DM Sans body.
+5. Chroma 0 (wash stops are neutral-100 → transparent); no `thead` fill; no
+   synthetic italic; ghost at 0.06 ink only.
+6. Caption registers: sentence DM Sans 400/neutral-500, "Fig. N" DM Sans
+   500/neutral-600, mt 12; all five figures render at natural size.
+7. Wrap locks hold at 1280 + 390 (§10.3); page never overflows at 390
+   (scrollW == innerWidth, figures contained as specced).
+8. One focus rule on nav and links; hover 400→500 only, no transform/shadow.
+9. No `.dark`, no `dark:` variants, no `!important` in `globals.css` (standing).

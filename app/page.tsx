@@ -7,8 +7,8 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="mb-16">
-        <p className="t-body mb-6">
+      <section className="hero-wash mb-16">
+        <p className="t-body mb-4">
           I'm a product manager and builder. Currently working at{' '}
           <a
             href="https://doitpay.co"
@@ -20,7 +20,7 @@ export default function HomePage() {
           </a>{' '}
           on payment infrastructure.
         </p>
-        <p className="t-body mb-6">
+        <p className="t-body mb-4">
           The work so far: payment gateways, disbursement systems, integrations,
           and the regulatory side of moving other people's money. Lately, that's
           meant preparing Doitpay's Bank Indonesia PJP Category 1 Bundle 2 submission.
@@ -33,7 +33,7 @@ export default function HomePage() {
       </section>
 
       <section className="mb-16">
-        <h2 className="t-page mb-8 tracking-tight">Case Studies</h2>
+        <h2 className="t-page mb-8">Case Studies</h2>
         <div className="space-y-8">
           {caseStudies.map((caseStudy) => {
             const { frontmatter, slug } = caseStudy

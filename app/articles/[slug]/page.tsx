@@ -70,7 +70,7 @@ export default async function ArticlePage({
       </Link>
 
       <header className="mb-12">
-        <h1 className="t-page mb-4 tracking-tight">{frontmatter.title}</h1>
+        <h1 className="t-page mb-4">{frontmatter.title}</h1>
         <time className="t-meta text-neutral-600">
           {format(new Date(frontmatter.date), 'MMMM d, yyyy')}
         </time>
