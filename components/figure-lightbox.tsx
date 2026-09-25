@@ -73,7 +73,7 @@ export function FigureLightbox({ children }: { children: React.ReactNode }) {
           role="dialog"
           aria-modal="true"
           aria-label={open.alt}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/[0.97] p-6"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/[0.97] p-6"
           onClick={close}
         >
           <button
