@@ -230,11 +230,9 @@ description runs full, punchline at the end.
   transparent falloff only. Static — no animation, no transition. No viewport units,
   no negative offsets. Paper `#FFFFFF` everywhere else. Text contrast unchanged
   (ink on near-white).
-- **Ghost RN:** the favicon's RN outlines as a separate asset, `160px` desktop /
-  `96px` at 390, ink at `0.06` opacity, `aria-hidden`, `pointer-events: none`, no
-  tabindex, no hover. Right of the wordmark on desktop; must never cause overflow
-  (scrollW == innerWidth at 390). If it ever fights the text, it loses — hidden
-  under `360px`.
+- **Ghost RN:** removed per owner review — it read as a second wordmark at
+  `160px` and competed with the name. The wash carries the warmth alone.
+  Record only; no asset, no placement, no replacement mark.
 
 ### 10.5 States (revised for the 500 ceiling)
 
@@ -252,6 +250,13 @@ Delivered SVGs ship untouched. The img→figure+figcaption map is font-agnostic,
 change needed. Caption register per §10.2. Scanner checks (chroma/weight/size) are
 font-independent — no harness changes. Convention holds for future figures: keep
 embedding the mono subsets; the renderer never needs to know.
+
+Figure images are zoomable (owner directive): image renders as the trigger
+(`cursor: zoom-in`, keyboard-operable, existing ink focus ring — no new focus
+style); overlay is a paper scrim (`bg-background/[0.97]`) with the figure at
+natural 624 (never upscaled) plus its caption in-register; dismiss via
+click-away, Esc, or the close control; focus trap + focus return + scroll lock.
+No thumbnail transform or shadow — the zoom is the feedback.
 
 ### 10.7 Implementation inventory (build lane)
 
@@ -276,10 +281,14 @@ embedding the mono subsets; the renderer never needs to know.
    caption prefixes, `th`).
 4. Measure 60–75ch in the 624px container, DM Sans body.
 5. Chroma 0 (wash stops are neutral-100 → transparent); no `thead` fill; no
-   synthetic italic; ghost at 0.06 ink only.
+   synthetic italic; no ghost asset, no ghost refs.
 6. Caption registers: sentence DM Sans 400/neutral-500, "Fig. N" DM Sans
    500/neutral-600, mt 12; all five figures render at natural size.
 7. Wrap locks hold at 1280 + 390 (§10.3); page never overflows at 390
    (scrollW == innerWidth, figures contained as specced).
 8. One focus rule on nav and links; hover 400→500 only, no transform/shadow.
 9. No `.dark`, no `dark:` variants, no `!important` in `globals.css` (standing).
+10. Lightbox: closed state renders nothing (no stray close control anywhere on
+    the page); open state centers the figure at natural 624 with its caption,
+    paper scrim, focus on the close control, scroll locked; Esc / click-away /
+    close dismisses; focus returns to the triggering figure.
