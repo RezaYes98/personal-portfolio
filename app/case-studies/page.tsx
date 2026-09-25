@@ -13,7 +13,7 @@ export default function CaseStudiesPage() {
 
   return (
     <div>
-      <h1 className="t-page mb-12 tracking-tight">Case Studies</h1>
+      <h1 className="t-page mb-12">Case Studies</h1>
       <div className="space-y-8">
         {caseStudies.map((caseStudy) => {
           const { frontmatter, slug } = caseStudy

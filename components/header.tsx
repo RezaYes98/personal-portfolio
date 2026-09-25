@@ -4,7 +4,7 @@ import { NavLink } from '@/components/nav-link'
 export function Header() {
   return (
     <header className="mb-12">
-      <h1 className="mb-8 tracking-tight">
+      <h1 className="mb-8">
         <Link href="/" className="t-site">
           Reza Nur
         </Link>

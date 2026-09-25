@@ -14,7 +14,7 @@ export default function ArticlesPage() {
 
   return (
     <div>
-      <h1 className="t-page mb-12 tracking-tight">Writing</h1>
+      <h1 className="t-page mb-12">Writing</h1>
       <div className="space-y-8">
         {articles.length > 0 ? (
           articles.map((article) => {
