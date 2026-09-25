@@ -1,6 +1,7 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { isValidElement, type ReactElement } from 'react'
+import { ZoomableFigureImage } from '@/components/figure-lightbox'
 
 interface MarkdownContentProps {
   content: string
@@ -46,13 +47,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             return (
               <figure className="my-8">
                 <div className="overflow-x-auto">
-                  <img
-                    src={src}
-                    alt={alt ?? ''}
-                    loading="lazy"
-                    width={624}
-                    className="max-w-none"
-                  />
+                  <ZoomableFigureImage src={src} alt={alt ?? ''} />
                 </div>
                 <FigureCaption alt={alt} />
               </figure>

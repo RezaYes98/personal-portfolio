@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { MarkdownContent } from '@/components/markdown-content'
+import { FigureLightbox } from '@/components/figure-lightbox'
 import { getCaseStudy, getCaseStudies } from '@/lib/markdown'
 import { format } from 'date-fns'
 import type { Metadata } from 'next'
@@ -78,7 +79,9 @@ export default async function CaseStudyPage({
         </div>
       </header>
 
-      <MarkdownContent content={content} />
+      <FigureLightbox>
+        <MarkdownContent content={content} />
+      </FigureLightbox>
     </article>
   )
 }
