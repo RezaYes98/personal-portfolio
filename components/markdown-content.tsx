@@ -1,7 +1,7 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { isValidElement, type ReactElement } from 'react'
-import { ZoomableFigureImage } from '@/components/figure-lightbox'
+import { FigureDialog } from '@/components/figure-lightbox'
 
 interface MarkdownContentProps {
   content: string
@@ -13,11 +13,11 @@ function FigureCaption({ alt }: { alt?: string }) {
   if (!alt) return null
   const parsed = alt.match(/^(Fig\. \d+)([\s\S]*)$/)
   if (!parsed) {
-    return <figcaption className="t-body mt-3 text-sm text-neutral-600">{alt}</figcaption>
+    return <figcaption className="t-body mt-3 text-sm text-smoke">{alt}</figcaption>
   }
   return (
-    <figcaption className="t-body mt-3 text-sm text-neutral-500">
-      <span className="font-medium text-neutral-600">{parsed[1]}</span>
+    <figcaption className="t-body mt-3 text-sm text-smoke">
+      <span className="font-medium text-graphite">{parsed[1]}</span>
       {parsed[2]}
     </figcaption>
   )
@@ -47,7 +47,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             return (
               <figure className="my-8">
                 <div className="overflow-x-auto">
-                  <ZoomableFigureImage src={src} alt={alt ?? ''} />
+                  <FigureDialog src={src} alt={alt ?? ''} />
                 </div>
                 <FigureCaption alt={alt} />
               </figure>
@@ -77,7 +77,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           return (
             <a
               href={href}
-              className="text-foreground underline decoration-neutral-400 underline-offset-4 transition-colors hover:decoration-neutral-600"
+              className="text-ink underline decoration-stone underline-offset-4 transition-colors hover:decoration-smoke"
               {...(internal ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
             >
               {children}
@@ -85,24 +85,24 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           )
         },
         blockquote: ({ children }) => (
-          <blockquote className="t-body border-l border-foreground pl-4 text-neutral-600">
+          <blockquote className="t-body border-l border-ink pl-4 text-smoke">
             {children}
           </blockquote>
         ),
         code: ({ children }) => (
-          <code className="bg-neutral-100 px-1">{children}</code>
+          <code className="bg-taupe px-1">{children}</code>
         ),
-        hr: () => <hr className="border-neutral-200" />,
+        hr: () => <hr className="border-stone" />,
         table: ({ children }) => (
           <div className="my-6 overflow-x-auto">
             <table className="min-w-full">{children}</table>
           </div>
         ),
         tbody: ({ children }) => (
-          <tbody className="divide-y divide-neutral-200">{children}</tbody>
+          <tbody className="divide-y divide-stone">{children}</tbody>
         ),
         th: ({ children }) => (
-          <th className="t-meta border-b border-neutral-200 px-4 py-3 text-left font-medium">
+          <th className="t-meta border-b border-stone px-4 py-3 text-left font-medium">
             {children}
           </th>
         ),

@@ -21,7 +21,7 @@ export default function CaseStudiesPage() {
           const isExternal = !!frontmatter.external_url
 
           return (
-            <article key={slug}>
+            <article key={slug} className="card-study">
               <a
                 href={href}
                 {...(isExternal
@@ -30,16 +30,16 @@ export default function CaseStudiesPage() {
                 className="group block"
               >
                 <div className="mb-2 flex items-baseline justify-between gap-4">
-                  <h2 className="t-entry">{frontmatter.title}</h2>
-                  <time className="t-meta shrink-0 text-neutral-500">
+                  <h2 className="t-card-title text-ink">{frontmatter.title}</h2>
+                  <time className="t-micro shrink-0 text-smoke">
                     {format(new Date(frontmatter.date), 'MMM yyyy')}
                   </time>
                 </div>
                 <div className="flex items-start justify-between gap-3">
-                  <p className="t-meta text-neutral-600">
+                  <p className="t-card-desc text-smoke">
                     {frontmatter.description}
                   </p>
-                  <span className="shrink-0 text-neutral-400 transition-colors group-hover:text-neutral-600">
+                  <span className="shrink-0 text-smoke transition-colors group-hover:text-graphite">
                     →
                   </span>
                 </div>

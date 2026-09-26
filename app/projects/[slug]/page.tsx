@@ -64,14 +64,14 @@ export default async function ProjectPage({
     <article>
       <Link
         href="/projects"
-        className="t-meta mb-8 inline-flex items-center text-neutral-600 transition-colors hover:text-neutral-900"
+        className="t-meta mb-8 inline-flex items-center text-smoke transition-colors hover:text-graphite"
       >
         ← back
       </Link>
 
       <header className="mb-12">
         <h1 className="t-page mb-4">{frontmatter.title}</h1>
-        <div className="t-meta flex items-center gap-3 text-neutral-600">
+        <div className="t-meta flex items-center gap-3 text-smoke">
           <time>{format(new Date(frontmatter.date), 'MMMM yyyy')}</time>
           {frontmatter.status && (
             <>
@@ -85,7 +85,7 @@ export default async function ProjectPage({
             {frontmatter.tags.map((tag) => (
               <span
                 key={tag}
-                className="t-micro rounded-full bg-neutral-100 px-2 py-0.5 text-neutral-500"
+                className="t-micro rounded-full bg-taupe px-2 py-0.5 text-smoke"
               >
                 {tag}
               </span>
@@ -99,7 +99,7 @@ export default async function ProjectPage({
                 href={frontmatter.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="t-meta underline decoration-neutral-400 underline-offset-4 transition-colors hover:decoration-neutral-600"
+                className="t-meta underline decoration-stone underline-offset-4 transition-colors hover:decoration-smoke"
               >
                 View Project →
               </a>
@@ -109,7 +109,7 @@ export default async function ProjectPage({
                 href={frontmatter.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="t-meta underline decoration-neutral-400 underline-offset-4 transition-colors hover:decoration-neutral-600"
+                className="t-meta underline decoration-stone underline-offset-4 transition-colors hover:decoration-smoke"
               >
                 GitHub →
               </a>

@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react'
-import { DM_Sans, IBM_Plex_Mono } from 'next/font/google'
+import { IBM_Plex_Mono, Inter } from 'next/font/google'
 import { Header } from '@/components/header'
 import './globals.css'
 
-const dmSans = DM_Sans({
-  weight: ['400', '500'],
+const inter = Inter({
+  weight: ['300', '400', '500'],
   subsets: ['latin'],
-  variable: '--font-dm-sans',
+  variable: '--font-inter',
 })
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -49,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${ibmPlexMono.variable} mx-auto max-w-2xl px-6 py-12 antialiased md:py-20`}
+        className={`${inter.variable} ${ibmPlexMono.variable} mx-auto max-w-2xl px-6 py-12 antialiased md:py-20`}
       >
         <Header />
         <main>{children}</main>
