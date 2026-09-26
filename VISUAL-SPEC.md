@@ -292,3 +292,174 @@ No thumbnail transform or shadow — the zoom is the feedback.
     the page); open state centers the figure at natural 624 with its caption,
     paper scrim, focus on the close control, scroll locked; Esc / click-away /
     close dismisses; focus returns to the triggering figure.
+
+---
+
+## 11. Warm cream editorial (owner-directed; supersedes §10 where they differ)
+
+Direction: ElevenLabs style reference (`Downloads/DESIGN (1).md`) — warm eggshell
+paper, black ink, whisper-weight display at 300, taupe cards, pill buttons,
+hairlines, near-invisible shadows. Editorial restraint over marketing spectacle.
+§10 freezes as the fallback; this section replaces its tokens, ladder top,
+surfaces, and lightbox implementation. Content, order, figures, and states stay
+quiet. No accent in UI. No copy changes.
+
+### 11.1 Fonts — Inter whisper + voice, Plex instruments (measured)
+
+- **Inter, static instances, weights 300 + 400 + 500, latin.**
+  `Inter({ weight: ['300','400','500'], subsets: ['latin'] })`. Static, not
+  variable: static pins exactly the three ladder weights, so the 300 floor and
+  500 ceiling are enforced by availability under `font-synthesis: none`;
+  variable would ship 100–900 and let any stray weight render.
+  Payloads (Chrome UA, woff2, latin — build lane, measured): Inter static
+  300+400+500 resolve to **one shared 48,432-byte file, single download**
+  (all three weights serve the same URL); variable latin (opsz+wght) is
+  73,016 bytes, ~1.5x. Compare last pass: DM Sans static two-weight ≈ 37KB
+  vs variable 62.5KB. Preload count drops 2 → 1 while Plex stays non-preloaded
+  as today (Inter contributes exactly 1 preload; 2 total only if Plex ever
+  preloads). Net payload roughly neutral vs today (DM ~37KB + Plex ~10KB out;
+  Inter ~48KB + Plex ~10KB in).
+- **Weight-300 legibility caveat (build lane):** Inter 300 on eggshell is thin
+  by construction — display-only at 32px+, never body.
+- **IBM Plex Mono retained at 400** for instruments (nav, dates, tags, meta
+  rows 13–14px) and figure interiors (embedded subsets untouched). Already
+  loaded, zero new dependency. Geist Mono adds nothing here — not loaded.
+- Fallback stacks: Inter → system sans; Plex keeps its mono stack.
+  `font-synthesis: none` stays as guardrail.
+
+### 11.2 Ladder — role → family + step
+
+| role        | family | px / lh | weight | tracking | where                                        |
+| ----------- | ------ | ------- | ------ | -------- | -------------------------------------------- |
+| site title  | Inter  | 32 / 36 | 300    | -0.02em  | whisper wordmark (the one loud change)       |
+| page title  | Inter  | 32 / 36 | 300    | -0.02em  | detail h1, list h1, home head; `balance` kept|
+| sub-head    | Inter  | 20 / 27 | 400    | 0        | md h2 — never exceeds page title             |
+| entry title | Inter  | 16 / 24 | 500    | 0        | list-card titles, md h3 — weight carries     |
+| body        | Inter  | 16 / 24 | 400    | +0.01em  | prose, lede — p mb 16; measure re-proofed    |
+| meta        | Plex   | 14 / 20 | 400    | 0        | nav, back links, meta rows                   |
+| micro       | Plex   | 12 / 16 | 400    | 0        | dates, tags                                  |
+
+Rules: markdown headings never exceed the page title (md h2 = 20 max).
+**No weight above 500 anywhere** (`strong` = 500, `th` = 500, Fig-N prefix =
+emphasis step, one above its sentence). Nothing below 12px. Voice (titles,
+prose, captions, blockquote, links) in Inter; instruments in Plex.
+Inter 14/16px body sizes carry +0.01em tracking per the reference.
+
+### 11.3 Color — warm ramp, ash decorative-only
+
+| token    | value     | role                                              |
+| -------- | --------- | ------------------------------------------------- |
+| eggshell | `#fdfcfc` | page canvas (replaces pure white; the warmth)     |
+| taupe    | `#f5f3f1` | case-study cards, section bands — flat, borderless|
+| stone    | `#ebe8e4` | hairlines, dividers (replaces neutral-200)        |
+| ink      | `#000000` | primary text, filled pills                        |
+| graphite | `#44403b` | secondary/emphasis text, Fig-N prefix             |
+| smoke    | `#777169` | body-muted, descriptions, captions                |
+| ash      | `#a59f97` | **never text — decorative only**                  |
+
+Measured contrast on eggshell (build lane): ink 20.51, graphite 10.04,
+smoke 4.71 (passes AA at 14–16px body), **ash 2.56 — fails at every text
+size**. Captions stay smoke/graphite; ash never sets type.
+**Violet `#0447ff` + ember `#ff4704` never enter `@theme`** (reference:
+product-visuals-only; the portfolio has no product visuals; curator locks no
+meaning by color — order, text, position carry everything). Cut, not tokenized.
+Shadows default flat: the whisper stack (1px edge + 4% blur) is allowed on
+exactly one surface — the open Dialog popup. A card needing separation gets
+taupe, not shadow.
+
+### 11.4 Surface & components (reference mapped to our templates)
+
+- **Shell kept:** 624px narrow measure (`max-w-2xl` minus `px-6`) stays — it
+  is the site's identity. The reference's 1280 shell is not followed; widening
+  re-opens the measure gate for zero narrative gain.
+- **Nav:** transparent 50px bar, wordmark left, links left-center as Inter
+  14/500 ghost pills (`9999px`); LinkedIn/email wording unchanged → outline
+  pills (`#fdfcfc` fill, ink text, 1px `#e5e5e5`). Pill shape only, no copy
+  change (curator lock).
+- **Hero (locked constraint):** asymmetric editorial — display line Inter 300
+  36px left, body 16px smoke right. **Stacks below ~640px** (display above
+  body; never side-by-side at 390 — side-by-side at 342 content width
+  overflows by construction; stacked keeps scrollW == innerWidth).
+- **List rows → taupe cards:** each case study `#f5f3f1`, 20px radius, 32px
+  padding, no border, no shadow. Title Inter 500 16, description Inter 400 14
+  smoke, date Plex mono. Arrow `→` stays; hover quiet only. Titles and
+  descriptions run verbatim — no truncation, no clamping (curator lock).
+- **Detail pages:** structure unchanged. `t-page` becomes whisper 32; md h2/h3
+  step down per ladder; blockquote ink bar inherits voice; tables keep
+  hairlines-only in stone.
+- **Dividers:** `1px solid #ebe8e4` where sections need explicit separation,
+  whitespace elsewhere.
+- **Radii:** pills `9999px` (buttons, tags, nav), cards `20px`, hero/flagship
+  panel `24px`. Nothing sharper than 8px on any panel.
+
+### 11.5 Base UI — Dialog only, locked shape per-figure roots
+
+The portfolio has exactly one interactive surface. `@base-ui/react` lands
+there and nowhere else. Blast radius (build lane, measured): 1.8.0,
+tree-shakable, zero global CSS, zero CSS-in-JS, React 19 in peer range, Next
+16 + Turbopack clean, risk LOW; only new file `package.json` + lockfile.
+- **Locked shape: per-figure `Dialog.Root` (five roots).** Each figure owns
+  its Trigger/Portal/Popup — the `figure-zoom` event bus is deleted entirely.
+  §10.8 item 10 (closed-renders-nothing) holds per root as regression gate.
+- Carries over: figure at natural 624 capped `max-h-80vh`, caption
+  in-register (Inter 400 smoke + Fig-N 500 graphite), zoom-in cursor +
+  keyboard-operable native `<Dialog.Trigger>`, scrim-click-to-close on
+  Backdrop with `stopPropagation` on the image.
+- **Scrim hardcode (standing lesson): `bg-[#fdfcfc]/[0.97]`** — arbitrary
+  value + opacity modifier, never a theme token (`bg-background/[0.97]`
+  painted nothing in the prod bundle, §10 finding). Paint verified in the
+  prod bundle at implementation.
+- Setup (two inert base-layer lines, no render effect): `body { isolation:
+  isolate; position: relative; }` — portals paint above content; absolute
+  backdrops cover the visual viewport on iOS 26 post-scroll.
+- Net: ~100 lines deleted, ~40 added; Portal, focus trap, Esc, scroll lock,
+  initial/return focus free.
+
+### 11.6 Figures & captions
+
+SVGs ship untouched (embedded Plex stands; renderer stays font-agnostic).
+Caption register: sentence Inter 400 14/20 smoke, "Fig. N" Inter 500
+graphite, mt 12 unchanged. Captions tie to the article (prose face); figures
+stay artifacts (curator lock). No copy change.
+
+### 11.7 Wrap locks (curator — re-proof at 1280 + 390 on running assembly)
+
+Order is data: no truncation, no clamping; refunds punchline at the end;
+Merchant first. Merchant 73 chars breaks after the colon where measure allows;
+never strand API alone on line three. `Webhook-Based` together, `Bundle 2`
+together, `PJP Category 1 Bundle 2` together in hero and title. At 390 the
+narrow measure wins. **A 1280 break on a locked join stays a finding.**
+
+### 11.8 Implementation inventory (build lane)
+
+`package.json` (+ lockfile: `@base-ui/react`) → `app/layout.tsx` (Inter
+300/400/500 + Plex 400 loaders; body keeps `max-w-2xl`) → `app/globals.css`
+(cream `@theme`, ladder, pills, taupe cards, base-layer
+`isolation`/`relative`) → `components/header.tsx` + `nav-link.tsx` (pill nav)
+→ `app/page.tsx` (asymmetric hero + taupe list cards) → list/detail templates
+→ `components/markdown-content.tsx` (caption re-token) →
+`components/figure-lightbox.tsx` (Dialog migration, five roots). No renderer
+or content changes beyond tokens.
+
+### 11.9 Acceptance — verify on the running assembly, not the diff
+
+1. `document.fonts` shows Inter at **300, 400, 500 only** + Plex Mono 400;
+   body computes to Inter 16px.
+2. No hierarchy inversion: 32 > 20 > 16 (500) > 16 (400). No markdown heading
+   larger than its page title.
+3. No rendered weight above **500** anywhere (spot-check `strong` in tables,
+   caption prefixes, `th`).
+4. Measure 60–75ch in the 624px container, Inter body (canvas-proofed).
+5. Chroma limited to ink/graphite/smoke on warm surfaces; **ash zero hits on
+   text**; no `thead` fill; no synthetic italic; no violet/ember tokens
+   reachable.
+6. Caption registers: sentence Inter 400/smoke, "Fig. N" Inter 500/graphite,
+   mt 12; all five figures render at natural size.
+7. Wrap locks hold at 1280 + real-device 390 (§11.7); page never overflows at
+   390 (scrollW == innerWidth; hero stacked; figures contained).
+8. One focus rule; hover quiet (one notch toward ink), no transform/shadow.
+9. No `.dark`, no `dark:` variants, no `!important` in `globals.css`.
+10. Dialog (per root): closed renders nothing; open centers the figure at
+    natural 624 with its caption on the `bg-[#fdfcfc]/[0.97]` scrim, focus on
+    close, scroll locked; Esc / backdrop / close dismisses; focus returns to
+    the triggering figure.
