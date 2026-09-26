@@ -25,7 +25,7 @@ export function FigureDialog({
         />
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Backdrop className="fixed inset-0 z-50 bg-[#fdfcfc]/[0.97]" />
+        <Dialog.Backdrop className="backdrop-cream fixed inset-0 z-50 bg-[#fdfcfc] opacity-0 transition-opacity duration-200" />
         <Dialog.Viewport className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-6">
           <Dialog.Popup className="relative flex max-w-full flex-col items-center">
             <Dialog.Title className="sr-only">{alt}</Dialog.Title>
