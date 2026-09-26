@@ -463,3 +463,76 @@ or content changes beyond tokens.
     natural 624 with its caption on the `bg-[#fdfcfc]/[0.97]` scrim, focus on
     close, scroll locked; Esc / backdrop / close dismisses; focus returns to
     the triggering figure.
+
+---
+
+## 12. Stacked hero, pill marks, quiet motion (owner-directed; inside §11)
+
+Direction: hero always stacked vertical (display above body at every width);
+LinkedIn/email pills gain inline SVG marks in ink; quiet Emil Kowalski-style
+motion, CSS-only, no package. Content, order, figures, ladder, ramp, and
+states unchanged. No copy changes. §11 stands; this section deltas it.
+
+### 12.1 Hero — always stacked
+
+- `app/page.tsx:10` drops `min-[640px]:grid-cols-2` +
+  `min-[640px]:gap-10`; leaves `grid gap-8` single column at all widths.
+  Display `t-display` above, body below (DOM order already correct).
+- Wrap gate improves by construction: the 640–767 tight two-column case is
+  gone; stacked everywhere extends the 390 scrollW == innerWidth argument
+  upward for free. Gap stays 32px (no new token).
+- The §11.4 judgment note about 640–767 tight columns is spent — deleted.
+
+### 12.2 Pill marks — inline SVG, ink (locked)
+
+- LinkedIn + email anchors in `components/header.tsx` gain inline `<svg>`
+  ~16px (~300–600 bytes path each). Labels verbatim (`linkedin`, `email`);
+  never icon-only. Marks `aria-hidden`, decorative only.
+- Color (locked, all lanes concur): `currentColor` ink at 60–70%. Shape
+  reads as brand, hue adds nothing; palette stays closed, contrast trivial,
+  zero new tokens. Literal brand blue stays a gated path only (named
+  `@theme` decorative token, AA on eggshell) — not taken.
+- Inline, not assets: ~1KB HTML, 0 JS, zero new requests, inherits
+  `currentColor` so pill hover keeps working.
+
+### 12.3 Motion — Emil doctrine, CSS vehicle, no package
+
+- **No new package.** `motion-dom`/`framer-motion` entrance-only ships
+  ~25–45KB min+gzip for three fades (build lane, measured) — does not earn
+  its place. CSS `@keyframes` + ~30-line `useInView` IO hook: +0.5–1KB CSS,
+  +0 JS, +0 deps.
+- The three motions, nothing else: (i) staggered fade-rise on home hero +
+  `card-study` instances at first paint / scroll-in (opacity + translateY
+  8–12px, 300–500ms, `cubic-bezier(0.22,1,0.36,1)` — the Emil ease, zero
+  bounce); (ii) Dialog open (Popup opacity + scale .97→1 at 250ms; Backdrop
+  opacity-only 200ms) / close (faster, subtler reverse) via Base UI
+  `data-starting-style` / `data-open` / `data-ending-style` (unmount
+  deferral is internal — no wrapper, no keepMounted); (iii) pill `:active`
+  press feel (~0.98, ~100ms). Hover stays color-only; no layout shift
+  (transform/opacity, compositor only); interruptible by construction.
+  Dialog stays centered (modals exempt from trigger-origin, Emil's own rule).
+- Hydration-safe: server renders final state; client hook adds `data-inview`
+  + per-index `--stagger` after mount (`html.js` class guard); below-fold
+  cards animate on scroll-in. Stagger 60–80ms steps.
+- Reduced motion: all motion lives inside
+  `@media (prefers-reduced-motion: no-preference)` — reduced users get zero
+  animation declarations, no `!important` override (sweep-11 ban holds).
+  Hook attributes set harmlessly; punchlines visible with motion off.
+- Scope (locked): home hero + all `card-study` instances animate; detail
+  pages static except Dialog.
+
+### 12.4 Implementation inventory (build lane)
+
+`app/page.tsx` (un-grid hero, one class-string edit) →
+`components/header.tsx` (inline marks) → `app/globals.css` (keyframes in
+`no-preference` media, Dialog `data-*` transitions, `html.js` guard) → one
+small `useInView` hook → `components/figure-lightbox.tsx` (transition
+attributes only, no structural change). No renderer or content changes.
+
+### 12.5 Acceptance (adds to §11.9)
+
+Hero stacked at 1280 + 390, order/text verbatim, wraps re-proofed; pills
+show mark + label, marks `aria-hidden`, contrast holds; entrance runs once,
+no shift after settle, stagger felt-not-noticed; Dialog motion keeps trap +
+Esc + return focus + captions unchanged; reduced-motion = instant final
+state; no new dep, CSS delta ~1KB, sweep-11 still zero.
