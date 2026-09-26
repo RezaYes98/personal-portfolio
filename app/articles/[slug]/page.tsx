@@ -64,20 +64,20 @@ export default async function ArticlePage({
     <article>
       <Link
         href="/articles"
-        className="t-meta mb-8 inline-flex items-center text-neutral-600 transition-colors hover:text-neutral-900"
+        className="t-meta mb-8 inline-flex items-center text-smoke transition-colors hover:text-graphite"
       >
         ← back
       </Link>
 
       <header className="mb-12">
         <h1 className="t-page mb-4">{frontmatter.title}</h1>
-        <time className="t-meta text-neutral-600">
+        <time className="t-meta text-smoke">
           {format(new Date(frontmatter.date), 'MMMM d, yyyy')}
         </time>
         {frontmatter.tags && frontmatter.tags.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-2">
             {frontmatter.tags.map((tag) => (
-              <span key={tag} className="t-micro text-neutral-500">
+              <span key={tag} className="t-micro text-smoke">
                 {tag}
               </span>
             ))}

@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 import { MarkdownContent } from '@/components/markdown-content'
-import { FigureLightbox } from '@/components/figure-lightbox'
 import { getCaseStudy, getCaseStudies } from '@/lib/markdown'
 import { format } from 'date-fns'
 import type { Metadata } from 'next'
@@ -65,23 +64,21 @@ export default async function CaseStudyPage({
     <article>
       <Link
         href="/case-studies"
-        className="t-meta mb-8 inline-flex items-center text-neutral-600 transition-colors hover:text-neutral-900"
+        className="t-meta mb-8 inline-flex items-center text-smoke transition-colors hover:text-graphite"
       >
         ← back
       </Link>
 
       <header className="mb-12">
         <h1 className="t-page mb-4">{frontmatter.title}</h1>
-        <div className="t-meta flex items-center gap-3 text-neutral-600">
+        <div className="t-meta flex items-center gap-3 text-smoke">
           <span>{frontmatter.company}</span>
           <span>·</span>
           <time>{format(new Date(frontmatter.date), 'MMMM yyyy')}</time>
         </div>
       </header>
 
-      <FigureLightbox>
-        <MarkdownContent content={content} />
-      </FigureLightbox>
+      <MarkdownContent content={content} />
     </article>
   )
 }

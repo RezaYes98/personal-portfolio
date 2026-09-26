@@ -20,8 +20,8 @@ export function NavLink({
       aria-current={isActive ? 'page' : undefined}
       className={
         isActive
-          ? 'text-foreground underline underline-offset-4'
-          : 'text-neutral-600 transition-colors hover:text-neutral-900'
+          ? 'pill bg-taupe px-4 py-1.5 text-ink'
+          : 'pill px-4 py-1.5 text-ink transition-colors hover:bg-taupe'
       }
     >
       {children}

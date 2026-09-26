@@ -21,17 +21,19 @@ export default function ArticlesPage() {
             const { frontmatter, slug } = article
 
             return (
-              <article key={slug}>
+              <article key={slug} className="card-study">
                 <Link href={`/articles/${slug}`} className="group block">
                   <div className="mb-2 flex items-baseline justify-between gap-4">
-                    <h2 className="t-entry">{frontmatter.title}</h2>
-                    <time className="t-meta shrink-0 text-neutral-500">
+                    <h2 className="t-card-title text-ink">
+                      {frontmatter.title}
+                    </h2>
+                    <time className="t-micro shrink-0 text-smoke">
                       {format(new Date(frontmatter.date), 'MMM yyyy')}
                     </time>
                   </div>
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="t-meta text-neutral-600">
+                      <p className="t-card-desc text-smoke">
                         {frontmatter.description}
                       </p>
                       {frontmatter.tags && frontmatter.tags.length > 0 && (
@@ -39,7 +41,7 @@ export default function ArticlesPage() {
                           {frontmatter.tags.slice(0, 4).map((tag) => (
                             <span
                               key={tag}
-                              className="t-micro text-neutral-500"
+                              className="t-micro text-smoke"
                             >
                               {tag}
                             </span>
@@ -47,7 +49,7 @@ export default function ArticlesPage() {
                         </div>
                       )}
                     </div>
-                    <span className="shrink-0 text-neutral-400 transition-colors group-hover:text-neutral-600">
+                    <span className="shrink-0 text-smoke transition-colors group-hover:text-graphite">
                       →
                     </span>
                   </div>
@@ -56,7 +58,7 @@ export default function ArticlesPage() {
             )
           })
         ) : (
-          <p className="t-body text-neutral-600">
+          <p className="t-body text-smoke">
             Coming soon. I'm working on articles about product strategy, fintech
             infrastructure, and building at scale.
           </p>
